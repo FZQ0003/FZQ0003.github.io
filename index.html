@@ -1,0 +1,54 @@
+<h1>(Test Document)</h1>
+
+<p>Blender &amp;lt;bpy&gt; JSON &amp;lt;c4dpy&gt; Cinema 4D</p>
+
+<p><strong>Do NOT edit files if you DON&#39;T know what it is!!!</strong></p>
+
+<hr/>
+
+<h3>Information - 说明</h3>
+
+<p>该项目的定位是一套“跨平台”脚本。最初想法是通过一个媒介，将不同平台不同种类的MC人模的数据进行处理，以此做到互通。</p>
+
+<p>想法挺好，实际操作却越来越难。</p>
+
+<p>考虑到人模功能复杂性，以及对分离控制的处理等问题，本项目暂停一段时间。现在的进度大约为1/4（在C4D中读取人模动作信息）。</p>
+
+<p>未来可能会重构代码和数据结构 ~~（不要哇）~~。</p>
+
+<blockquote><p><em>按照计划，下一个项目是一个“复刻”，具体内容还请自行搜索。<br/>~~论为啥我要用汉语？因为我英语不行……~~</em></p></blockquote>
+
+<hr/>
+
+<h3>Usage - 用法</h3>
+
+<ul><li><p>下载zip包并解压。</p><blockquote><p>下载方式：Clone or download -&gt; Download ZIP。</p></blockquote></li><li><p>打开C4D，导入人模并k帧。</p><blockquote><p>目前仅支持<a href="https://www.bilibili.com/video/av83892718" title="Voxel-Arcade团队在动画里使用的人模，由游客Yuke制作">Varcade</a>人模，如有其他需求可修改prop.json。</p></blockquote></li><li><p>准备完成后，选中人模整体。</p></li><li><p>打开“脚本 -&gt; 脚本管理器”。（快捷键Shift+F11）</p></li><li><p>在新窗口打开文件“record_c.py”并点击“执行”。</p></li><li><p>按照提示进行操作。</p></li><li><p>最后会输出一份JSON文件，可用记事本打开。</p><blockquote><p>当然，没什么实际用途……</p></blockquote></li></ul>
+
+<hr/>
+
+<h3>Todo List</h3>
+
+<ul><li><p>~~Record bones when using IK &amp; prepare for conversions from different rigs.~~</p><blockquote><p>~~“不是，这个蓝色的不推荐使用，我记得好像跟这个使用的时候会有出BUG之类的问题……”~~<br/>~~<em>-- <a href="https://www.bilibili.com/video/av83892718?p=3&amp;t=5m35s" title="“不是，这个蓝色的不推荐使用，我记得好像跟这个使用的时候会有出BUG之类的问题……”">Varcade</a></em>~~</p></blockquote></li><li><p>~~Read those JSONs. <em>(JSON -&gt; C4D)</em>~~</p></li><li><p>Use INI instead of JSON to save properties.</p></li><li><p>Learn C4D &amp; Blender APIs.</p></li></ul>
+
+<hr/>
+
+<h3>Screenshots of Designing - 一些截图</h3>
+
+<p><img alt="" src="resources/design_01.png"/>
+<img alt="" src="resources/design_02.png"/></p>
+
+<blockquote><p>Early design.</p></blockquote>
+
+<p><img alt="" src="resources/debug_01.png"/></p>
+
+<blockquote><p>Fixing bugs of &quot;Eye Location&quot;.</p></blockquote>
+
+<p><img alt="" src="resources/debug_02.png"/></p>
+
+<blockquote><p>Animating a rig &amp; Testing the script. ~~(I prefer using blender.)~~  </p></blockquote>
+
+<p>[](0 &quot;<em>The rig can be downloaded <a href="https://www.bilibili.com/video/av83892718">here</a>.</em>&quot;)</p>
+
+<hr/>
+
+<h3><a href="https://www.bilibili.com/video/av49330021/?t=2m31s" title="ああ 君は変った">Something has changed... ?</a></h3>
