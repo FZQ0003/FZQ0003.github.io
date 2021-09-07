@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>交叉编译GNU nano并在开发板终端运行</title>
+      <link href="/blog/2021-09-07/cross-compile-nano/"/>
+      <url>/blog/2021-09-07/cross-compile-nano/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>旧文档翻新：写于2021-08-06。</p></blockquote><p>GNU nano是一个体积小巧而功能强大的文本编辑器。其特点之一为可以直接在终端运行，不需要GUI界面。相比于vim，其对新手较为友好。</p><h2 id="编译ncurses"><a href="#编译ncurses" class="headerlink" title="编译ncurses"></a>编译ncurses</h2><p>下载源码包(当前版本为6.2)，解压并跳转到源码目录：</p><pre><code class="bash">wget https://invisible-island.net/datafiles/release/ncurses.tar.gztar -zxf ncurses.tar.gzcd ncurses-6.2/</code></pre><p>确认交叉编译器所在目录和安装目录，然后进行配置：</p><ul><li>这里所用编译器arm-none-linux-gnueabi-*位置在环境变量中，可直接输入到host参数。</li><li>安装目录在这里选择/home/f_qilin/forlinx/local输入到prefix参数，一般情况下为/usr/local，但在安装时需要root权限。</li><li>参数：<ul><li>–prefix=PREFIX：安装目录，一般为/usr/local。</li><li>–host=HOST：交叉编译器前缀，这里选择arm-none-linux-gnueabi。</li><li>剩下的输./configure –help查看。</li></ul></li></ul><pre><code class="bash">./configure --prefix=/home/f_qilin/forlinx/local --host=arm-none-linux-gnueabi --disable-big-core --disable-stripping --without-manpages --without-tack --without-tests --enable-widec --with-sharedmake cleanmakemake install</code></pre><p><img src="ncurses-01.png"></p><p><img src="ncurses-02.png"></p><p>注：</p><ul><li>注意ncurses版本，如果需要5.x等版本请进行相关配置或者下载5.x源码。</li><li>在实际运行时可能会出现“Error opening terminal: xxx.”的错误，详见“指定TERMINFO”部分。</li></ul><h2 id="编译nano"><a href="#编译nano" class="headerlink" title="编译nano"></a>编译nano</h2><p>在编译之前，需要创建一个curses.h的链接，否则会出错：</p><pre><code class="bash">ln -s ncursesw/curses.h /home/f_qilin/forlinx/local/include/curses.h</code></pre><p>其余流程同上(当前版本为5.8)：</p><pre><code class="bash">cd ..wget https://www.nano-editor.org/dist/v5/nano-5.8.tar.gztar -zxf nano-5.8.tar.gzcd nano-5.8/./configure --prefix=/home/f_qilin/forlinx/local --host=arm-none-linux-gnueabi CPPFLAGS=-I/home/f_qilin/forlinx/local/include LDFLAGS=-L/home/f_qilin/forlinx/local/libmake cleanmakemake install</code></pre><p>注：</p><ul><li>如果遇到编译错误，请查看错误信息，然后重新配置。</li></ul><p>至此，编译工作全部完成，接下来需要将输出文件转移到开发板中。</p><h2 id="转移到开发板"><a href="#转移到开发板" class="headerlink" title="转移到开发板"></a>转移到开发板</h2><p>在转移之前，请将输出文件所在目录挂载到开发板中。具体过程不再赘述。</p><p>假设/home/f_qilin/forlinx被挂载到/mnt/forlinx。</p><p>以下过程在开发板终端操作：</p><pre><code class="bash">cp -frp /mnt/forlinx/local/* /usr/</code></pre><p>注：</p><ul><li>可能需要花费较长时间，请耐心等待。</li><li>如果需要烧写等操作，请参考其他教程。复制文件的操作是完全一致的。</li></ul><p>完成后，输入nano命令即可运行。</p><p><img src="nano-01.png"></p><h2 id="指定TERMINFO"><a href="#指定TERMINFO" class="headerlink" title="指定TERMINFO"></a>指定TERMINFO</h2><p>如果出现以下情况：</p><p><img src="nano-02.png"></p><p>检查TERM以及TERMINFO：</p><p><img src="nano-03.png"></p><p>进行测试：</p><pre><code class="bash">TERMINFO=/usr/share/terminfo nano</code></pre><p>正常运行。可见，缺少TERMINFO变量，需要进行配置。</p><p>根据以上结果，只需要配置环境信息即可：</p><pre><code class="bash">echo &quot;export TERMINFO=/usr/share/terminfo&quot; &gt;&gt; /etc/profilesource /etc/profile</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>第一篇文章~</title>
+      <link href="/blog/2021-09-06/first-post/"/>
+      <url>/blog/2021-09-06/first-post/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>没什么，就是俺的第一篇文章www，诶就是玩~</p></blockquote><h2 id="我是谁"><a href="#我是谁" class="headerlink" title="我是谁"></a>我是谁</h2><p>我是F_Qilin（无下划线昵称FZQ0003），你可以叫我麒麟（当然因为撞名大概会换一个吧2333）。</p><p>你有可能听过我名字，也许是因为我平常喜欢搞一些奇怪的东西的缘故吧。（？）</p><h2 id="喜欢的东西"><a href="#喜欢的东西" class="headerlink" title="喜欢的东西"></a>喜欢的东西</h2><ul><li>Minecraft相关</li><li>Blender相关</li><li>红警相关</li><li>一些新奇的东西</li><li>毛乎乎的东西</li><li>说不出来的东西</li><li>……</li></ul><blockquote><p>害，随便写几个好了~</p></blockquote><h2 id="性格"><a href="#性格" class="headerlink" title="性格"></a>性格</h2><p>偏内向，但仅限于陌生人；对熟人完全相反。<br>~~所以只要你主动咱们就有故事了鸭~~~</p><h2 id="能力？"><a href="#能力？" class="headerlink" title="能力？"></a>能力？</h2><blockquote><p>讲真，俺也不造。</p></blockquote><h2 id="后续发展"><a href="#后续发展" class="headerlink" title="后续发展"></a>后续发展</h2><p>肯定是要持续运营这个博客啦！也许还会解锁一些新的东西~<br><del>所以快来关注俺的B站账号——</del><br><del>对对，就在最下面……左下角！</del></p><h2 id="欢迎关注鸭"><a href="#欢迎关注鸭" class="headerlink" title="欢迎关注鸭"></a>欢迎关注鸭</h2><blockquote><p>没了，整了个二级标题，诶就是强调一下嘿嘿——</p></blockquote>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+    
+    
+    <entry>
+      <title>关于我</title>
+      <link href="/blog/about.html"/>
+      <url>/blog/about.html</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>施工ing…</p></blockquote>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图库</title>
+      <link href="/blog/gallery.html"/>
+      <url>/blog/gallery.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>友情链接</title>
+      <link href="/blog/links.html"/>
+      <url>/blog/links.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+  
+</search>
