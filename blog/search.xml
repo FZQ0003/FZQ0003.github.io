@@ -44,9 +44,9 @@
     
     
     <entry>
-      <title>图库</title>
-      <link href="/blog/gallery.html"/>
-      <url>/blog/gallery.html</url>
+      <title>友情链接</title>
+      <link href="/blog/links.html"/>
+      <url>/blog/links.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -55,9 +55,9 @@
     
     
     <entry>
-      <title>友情链接</title>
-      <link href="/blog/links.html"/>
-      <url>/blog/links.html</url>
+      <title>图库</title>
+      <link href="/blog/gallery/index.html"/>
+      <url>/blog/gallery/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
