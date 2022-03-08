@@ -218,7 +218,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="F_Qilin的小窝">
-    <meta name="msapplication-starturl" content="https://fzq0003.github.io/blog/blog/">
+    <meta name="msapplication-starturl" content="https://fzq0003.github.io/blog/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="F_Qilin的小窝">
@@ -233,7 +233,7 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://fzq0003.github.io/blog/blog/">
+    <meta property="og:url" content="https://fzq0003.github.io/blog/">
     <meta property="og:type" content="blog">
     <meta property="og:title" content="F_Qilin的小窝">
     <meta property="og:image" content="/blog/img-fqilin/favicon-hires.png">
@@ -316,8 +316,18 @@
         <!-- Daily pic -->
 <div class="mdl-card mdl-shadow--2dp daily-pic mdl-cell mdl-cell--8-col index-top-block">
 
+    <!-- Background Style -->
+    
+        <script>
+            // TODO: Timezone
+            var todayDate = new Date();
+            var picNum = Math.floor(todayDate.getTime() / 86400000) % 4 + 1;
+            document.write("<style>.daily-pic-dir{background-image:url(/blog/img-fqilin/daily_pic/" + picNum + ".jpg);}</style>");
+        </script>
+    
+
     <!-- Pic & Slogan -->
-    <div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url(/blog/img/daily_pic.jpg)">
+    <div class="mdl-card__media mdl-color-text--grey-50 daily-pic-dir">
         <p class="index-top-block-slogan"><a href="#">
         
             
@@ -331,10 +341,10 @@
     <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
         <!-- Author Avatar -->
         <div id="author-avatar">
-            <img src="/blog/img-fqilin/avatar.png" width="32px" height="32px" alt="avatar">
+            <img src="/blog/img-fqilin/avatar.jpg" width="32px" height="32px" alt="avatar">
         </div>
         <div>
-            <strong>FZQ0003</strong>
+            <strong>F_Qilin</strong>
         </div>
     </div>
 </div>
@@ -424,7 +434,7 @@
             
 
             
-                <a class="index_share-link" href="https://twitter.com/intent/tweet?text=F_Qilin的小窝&url=https://fzq0003.github.io/blog&via=FZQ0003" target="_blank">
+                <a class="index_share-link" href="https://twitter.com/intent/tweet?text=F_Qilin的小窝&url=https://fzq0003.github.io/blog&via=F_Qilin" target="_blank">
                     <li class="mdl-menu__item mdl-js-ripple-effect">
                         分享到 Twitter
                     </li>
@@ -494,10 +504,10 @@
         <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
             <!-- Author Avatar -->
             <div id="author-avatar">
-                <img src="/blog/img-fqilin/avatar.png" width="44px" height="44px" alt="FZQ0003's avatar">
+                <img src="/blog/img-fqilin/avatar.jpg" width="44px" height="44px" alt="F_Qilin's avatar">
             </div>
             <div>
-                <strong>FZQ0003</strong>
+                <strong>F_Qilin</strong>
                 <span>10月 27, 2021</span>
             </div>
         </div>
@@ -553,10 +563,10 @@ GNU nano是一个体积小巧而功能强大...
         <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
             <!-- Author Avatar -->
             <div id="author-avatar">
-                <img src="/blog/img-fqilin/avatar.png" width="44px" height="44px" alt="FZQ0003's avatar">
+                <img src="/blog/img-fqilin/avatar.jpg" width="44px" height="44px" alt="F_Qilin's avatar">
             </div>
             <div>
-                <strong>FZQ0003</strong>
+                <strong>F_Qilin</strong>
                 <span>9月 07, 2021</span>
             </div>
         </div>
@@ -612,10 +622,10 @@ GNU nano是一个体积小巧而功能强大...
         <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
             <!-- Author Avatar -->
             <div id="author-avatar">
-                <img src="/blog/img-fqilin/avatar.png" width="44px" height="44px" alt="FZQ0003's avatar">
+                <img src="/blog/img-fqilin/avatar.jpg" width="44px" height="44px" alt="F_Qilin's avatar">
             </div>
             <div>
-                <strong>FZQ0003</strong>
+                <strong>F_Qilin</strong>
                 <span>9月 06, 2021</span>
             </div>
         </div>
@@ -683,7 +693,7 @@ GNU nano是一个体积小巧而功能强大...
 
     <!-- Sidebar Avatar -->
     <div class="sidebar-image">
-        <img src="/blog/img-fqilin/avatar.png" alt="FZQ0003's avatar">
+        <img src="/blog/img-fqilin/avatar.jpg" alt="F_Qilin's avatar">
     </div>
 
     <!-- Sidebar Email -->
