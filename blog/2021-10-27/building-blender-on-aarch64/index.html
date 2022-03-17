@@ -57,7 +57,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="">
-    <meta name="keywords" content="">
+    <meta name="keywords" content=",arm,blender,compile">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -243,11 +243,11 @@
     <meta property="og:title" content="在AArch64/ARM64架构平台编译Blender | F_Qilin的小窝">
     <meta property="og:image" content="/blog/img-fqilin/favicon-hires.png">
     <meta property="og:description" content="">
-    
+    <meta property="og:article:tag" content="arm"> <meta property="og:article:tag" content="blender"> <meta property="og:article:tag" content="compile"> 
 
     
         <meta property="article:published_time" content="Wed Oct 27 2021 22:54:54 GMT+0800">
-        <meta property="article:modified_time" content="Thu Oct 28 2021 00:17:29 GMT+0800">
+        <meta property="article:modified_time" content="Thu Mar 17 2022 21:46:24 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -270,7 +270,7 @@
     "mainEntityOfPage": "https://fzq0003.github.io/blog/2021-10-27/building-blender-on-aarch64/",
     "headline": "在AArch64/ARM64架构平台编译Blender",
     "datePublished": "Wed Oct 27 2021 22:54:54 GMT+0800",
-    "dateModified": "Thu Oct 28 2021 00:17:29 GMT+0800",
+    "dateModified": "Thu Mar 17 2022 21:46:24 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "F_Qilin",
@@ -288,7 +288,7 @@
             "url": "/img-fqilin/favicon-hires.png"
         }
     },
-    "keywords": "",
+    "keywords": ",arm,blender,compile",
     "description": "",
 }
 </script>
@@ -425,6 +425,15 @@
     
 
     <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-none-link" href="/blog/tags/arm/" rel="tag">arm</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/blog/tags/blender/" rel="tag">blender</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/blog/tags/compile/" rel="tag">compile</a>
+    </ul>
     
 
     <!-- Share -->
@@ -922,6 +931,14 @@ make install
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
+        <a href="/blog/2022-03-17/pandoc-markdown/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
@@ -1020,7 +1037,7 @@ make install
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/blog/archives/2021/10/">十月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/blog/archives/2021/09/">九月 2021<span class="sidebar_archives-count">2</span></a>
+                <a class="sidebar_archives-link" href="/blog/archives/2022/03/">三月 2022<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/blog/archives/2021/10/">十月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/blog/archives/2021/09/">九月 2021<span class="sidebar_archives-count">2</span></a>
             </ul>
         </li>
         
@@ -1030,6 +1047,16 @@ make install
     
 
     <!-- Pages  -->
+    
+        <li>
+            <a href="/blog/tags" title="标签">
+                
+                    <i class="material-icons sidebar-material-icons">label</i>
+                
+                标签
+            </a>
+        </li>
+        
     
         <li>
             <a href="/blog/about" title="关于我">
