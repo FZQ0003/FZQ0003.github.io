@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>一些说明</title>
+      <link href="/blog/2022-05-06/pin-info/"/>
+      <url>/blog/2022-05-06/pin-info/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>不定期更新。</p></blockquote><h2 id="关于需要输入密码的网址">关于需要输入密码的网址<a class="header-anchor" href="#关于需要输入密码的网址">¶</a></h2><p>自建服务器+内网穿透，效果不错，就是需要访问认证。</p><p>密码：<code>F_Qilin</code>。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Pandoc + Markdown 调教记录</title>
       <link href="/blog/2022-03-17/pandoc-markdown/"/>
       <url>/blog/2022-03-17/pandoc-markdown/</url>

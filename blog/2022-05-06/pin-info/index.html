@@ -46,7 +46,7 @@
     
     <title>
         
-            交叉编译GNU nano并在开发板终端运行 | 
+            一些说明 | 
         
         F_Qilin的小窝
     </title>
@@ -57,7 +57,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="">
-    <meta name="keywords" content=",arm,compile,gnu-nano">
+    <meta name="keywords" content="">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -223,7 +223,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="F_Qilin的小窝">
-    <meta name="msapplication-starturl" content="https://fzq0003.github.io/blog/2021-09-07/cross-compile-nano/">
+    <meta name="msapplication-starturl" content="https://fzq0003.github.io/blog/2022-05-06/pin-info/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="F_Qilin的小窝">
@@ -238,16 +238,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://fzq0003.github.io/blog/2021-09-07/cross-compile-nano/">
+    <meta property="og:url" content="https://fzq0003.github.io/blog/2022-05-06/pin-info/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="交叉编译GNU nano并在开发板终端运行 | F_Qilin的小窝">
+    <meta property="og:title" content="一些说明 | F_Qilin的小窝">
     <meta property="og:image" content="/blog/img-fqilin/favicon-hires.png">
     <meta property="og:description" content="">
-    <meta property="og:article:tag" content="arm"> <meta property="og:article:tag" content="compile"> <meta property="og:article:tag" content="gnu-nano"> 
+    
 
     
-        <meta property="article:published_time" content="Tue Sep 07 2021 18:50:16 GMT+0800">
-        <meta property="article:modified_time" content="Thu Mar 17 2022 21:45:58 GMT+0800">
+        <meta property="article:published_time" content="Fri May 06 2022 02:00:13 GMT+0800">
+        <meta property="article:modified_time" content="Fri May 06 2022 02:06:33 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -255,7 +255,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://fzq0003.github.io/blog/2021-09-07/cross-compile-nano/" />
+        <link rel="canonical" href="https://fzq0003.github.io/blog/2022-05-06/pin-info/" />
     
 
     <!-- Structured-data for SEO -->
@@ -267,10 +267,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "https://fzq0003.github.io/blog/2021-09-07/cross-compile-nano/",
-    "headline": "交叉编译GNU nano并在开发板终端运行",
-    "datePublished": "Tue Sep 07 2021 18:50:16 GMT+0800",
-    "dateModified": "Thu Mar 17 2022 21:45:58 GMT+0800",
+    "mainEntityOfPage": "https://fzq0003.github.io/blog/2022-05-06/pin-info/",
+    "headline": "一些说明",
+    "datePublished": "Fri May 06 2022 02:00:13 GMT+0800",
+    "dateModified": "Fri May 06 2022 02:06:33 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "F_Qilin",
@@ -288,7 +288,7 @@
             "url": "/img-fqilin/favicon-hires.png"
         }
     },
-    "keywords": ",arm,compile,gnu-nano",
+    "keywords": "",
     "description": "",
 }
 </script>
@@ -354,7 +354,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E7%BC%96%E8%AF%91ncurses"><span class="post-toc-number">1.</span> <span class="post-toc-text">编译ncurses</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E7%BC%96%E8%AF%91nano"><span class="post-toc-number">2.</span> <span class="post-toc-text">编译nano</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E8%BD%AC%E7%A7%BB%E5%88%B0%E5%BC%80%E5%8F%91%E6%9D%BF"><span class="post-toc-number">3.</span> <span class="post-toc-text">转移到开发板</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%8C%87%E5%AE%9ATERMINFO"><span class="post-toc-number">4.</span> <span class="post-toc-text">指定TERMINFO</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%85%B3%E4%BA%8E%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81%E7%9A%84%E7%BD%91%E5%9D%80"><span class="post-toc-number">1.</span> <span class="post-toc-text">关于需要输入密码的网址</span></a></li></ol>
     </ul>
     
 
@@ -386,7 +386,7 @@
         
     
             <p class="article-headline-p">
-                交叉编译GNU nano并在开发板终端运行
+                一些说明
             </p>
         </div>
 
@@ -405,7 +405,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>F_Qilin</strong>
-        <span>9月 07, 2021</span>
+        <span>5月 06, 2022</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -427,22 +427,13 @@
 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
     <li class="mdl-menu__item">在其它设备中阅读本文章</li>
     
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC10lEQVR42u3aQZLbMAwEQP//08k1F8kzoJJoydbJ5bVENlxlLAB+fh15fbCxsbGxsbGxsbFfyf7E1/1df75/ufDtJ9u/1nvGxsbG3pr95af/4jNXCySbm5FW9oyNjY19AjtZJn999Zw8HLNkho2NjY2dsPNUdA/+GwkPGxsbGztPYEkg2sJm1pzCxsbGxs43uhKC5J0k4f2HXho2Njb269l5u+c9r//pfBsbGxv7xez2mi1ZpJn43nrn2NjY2Juy2+MySThmJc3K0c9odWxsbOxN2W1L6Gq7+UC3Xfd+rTz02NjY2Kex2yXbwmN2uKdNbNjY2NjnsNvmzmyc0KalpXSFjY2NfQx7/QjOfXGS82apq0hv2NjY2Juyk5/+2Rg4CV+ervLPDOfb2NjY2Fuw83JiJeXkKbAd9H4JPTY2NvYx7LyJsxKglbZRO0jGxsbGPpOdL982mNaHBMNxAjY2Nvam7Pwf+tnRmVnySwbPdUMKGxsbe1N23txpN5SkvadGDsNBLzY2NvZG7HZb7YGbWUuoTZNfvgxsbGzsTdntMLVt96w8Z3b4MhoPYGNjY2/KLh6xsnyc2PIy5uFeGjY2NvYPZz91dCYfDLeHL9vBBjY2Nvbe7Lwdvz5ImJUobVCKQS82Njb2FuyknFgZ97ZlzywQ0aEfbGxs7K3ZK2PU2RNmA+a2kYSNjY19DnvWfH8qWM8OfYteGjY2NvZ27OTmWWmRlyvrA+C6qYSNjY29HbvF5w2pWWJbubCxsbFPYLdXO15dL3jyr6doKmFjY2NvxB4mg/JY5ErBMxtID8+cYmNjY/9Ydrtk3txpA9qGpjj0iY2NjX0Ae+VwZD4SaIcTeeC+BAgbGxsbe1SE5GlmNh4u7sLGxsbGHpUHSchmyHqAgY2NjX0Auy0Y1ttAK0HMx8bY2NjYJ7Dbxk17jKYdGz91WBMbGxv7BPY5FzY2NjY2NjY2NvZrrt/I9wttBUQkVAAAAABJRU5ErkJggg==">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACY0lEQVR42u3awXLCMAwEUP7/p9trLw0r2RYh83LqQAl5PthipdfPo68XHh4eHh4eHh7ezXiv+Lr+1N/X8/sndys/Gx4eHt4I781W+89DV0nJHa7vHD0bHh4e3iAv2e6Tr8wZVXZ0FOHh4eHdntfbvleWAw8PD+/befnrSSSx8mx4eHh487x8s165rkvqDUEJHh4e3giv+liTf4/29/Dw8PACXnmkKS6vq0VzLyZ+M3SFh4eHd4CXb8TXjCo4p+bPg4eHhzfDq4az14HCShSbBBbNkhoPDw9vK28lck228qRA3zv4hYeHh3ealxe+K62yZDmSpWyW1Hh4eHhbeXmZ22uG7Xq3cNjg4eHhHeblW/ZKONtbrN4hgYeHhzfD67WgqvFrHhzni1v+xYCHh4d3gJePAuTDB73IOG/L4eHh4X2WlwPypdkVB0dNODw8PLwRXq9ZVY1l84ghHyzAw8PD+xSvN0bQixt6/7Nh6AoPDw9vK685GBo8XL581Si5XFLj4eHhbeXlRXMe8q63sqqjDHh4eHgzvGrEkJB2NdWqy42Hh4c3yUvK3N5YQO+AqS4HHh4e3md5ebGbh7zrMUThiMLDw8O7AS8fukrihurBU0Xi4eHhnebtbVzl7ate2BFFFXh4eHiHeSubcpVRHWNtDjTg4eHhjfCSw6DXBqvGtdVxhMIvBjw8PLwDvHyDXhksyJF5yw0PDw/vG3m9Urt3Hzw8PLzn8ZKxgOqiJN+Oh4eHN8/Lv/560+8dFcmnjse4eHh4eAcaYM2mVHEsoBcK4+Hh4c3wnnfh4eHh4eHh4eHd4PoFYBDtObDusWoAAAAASUVORK5CYII=">
     
 </ul>
 
     
 
     <!-- Tags (bookmark) -->
-    
-    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-        <i class="material-icons" role="presentation">bookmark</i>
-        <span class="visuallyhidden">bookmark</span>
-    </button>
-    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
-        <li class="mdl-menu__item">
-        <a class="post_tag-none-link" href="/blog/tags/arm/" rel="tag">arm</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/blog/tags/compile/" rel="tag">compile</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/blog/tags/gnu-nano/" rel="tag">gnu-nano</a>
-    </ul>
     
 
     <!-- Share -->
@@ -461,7 +452,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=交叉编译GNU nano并在开发板终端运行&url=https://fzq0003.github.io/blog/2021-09-07/cross-compile-nano/&via=F_Qilin" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=一些说明&url=https://fzq0003.github.io/blog/2022-05-06/pin-info/&via=F_Qilin" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -479,7 +470,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=F_Qilin的小窝&title=交叉编译GNU nano并在开发板终端运行&summary=&pics=https://fzq0003.github.io/blog/img-fqilin/favicon.png&url=https://fzq0003.github.io/blog/blog/2021-09-07/cross-compile-nano/" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=F_Qilin的小窝&title=一些说明&summary=&pics=https://fzq0003.github.io/blog/img-fqilin/favicon.png&url=https://fzq0003.github.io/blog/blog/2022-05-06/pin-info/" target="_blank">
             <li class="mdl-menu__item">
                 分享到 QQ
             </li>
@@ -488,7 +479,7 @@
 
     <!-- Share Telegram -->
     
-        <a class="post_share-link" href="https://telegram.me/share/url?url=https://fzq0003.github.io/blog/2021-09-07/cross-compile-nano/&text=交叉编译GNU nano并在开发板终端运行" target="_blank">
+        <a class="post_share-link" href="https://telegram.me/share/url?url=https://fzq0003.github.io/blog/2022-05-06/pin-info/&text=一些说明" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Telegram
             </li>
@@ -505,84 +496,11 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <blockquote>
-<p>旧文档翻新：写于2021-08-06。</p>
+<p>不定期更新。</p>
 </blockquote>
-<p>GNU nano是一个体积小巧而功能强大的文本编辑器。其特点之一为可以直接在终端运行，不需要GUI界面。相比于vim，其对新手较为友好。</p>
-<h2 id="编译ncurses">编译ncurses<a class="header-anchor" href="#编译ncurses">¶</a></h2>
-<p>下载源码包(当前版本为6.2)，解压并跳转到源码目录：</p>
-<pre><code class="language-bash">wget https://invisible-island.net/datafiles/release/ncurses.tar.gz
-tar -zxf ncurses.tar.gz
-cd ncurses-6.2/
-</code></pre>
-<p>确认交叉编译器所在目录和安装目录，然后进行配置：</p>
-<ul>
-<li>这里所用编译器arm-none-linux-gnueabi-*位置在环境变量中，可直接输入到host参数。</li>
-<li>安装目录在这里选择/home/f_qilin/forlinx/local输入到prefix参数，一般情况下为/usr/local，但在安装时需要root权限。</li>
-<li>参数：
-<ul>
-<li>–prefix=PREFIX：安装目录，一般为/usr/local。</li>
-<li>–host=HOST：交叉编译器前缀，这里选择arm-none-linux-gnueabi。</li>
-<li>剩下的输./configure --help查看。</li>
-</ul>
-</li>
-</ul>
-<pre><code class="language-bash">./configure --prefix=/home/f_qilin/forlinx/local --host=arm-none-linux-gnueabi --disable-big-core --disable-stripping --without-manpages --without-tack --without-tests --enable-widec --with-shared
-make clean
-make
-make install
-</code></pre>
-<p><img src="ncurses-01.png" alt="" /></p>
-<p><img src="ncurses-02.png" alt="" /></p>
-<p>注：</p>
-<ul>
-<li>注意ncurses版本，如果需要5.x等版本请进行相关配置或者下载5.x源码。</li>
-<li>在实际运行时可能会出现“Error opening terminal: xxx.”的错误，详见“指定TERMINFO”部分。</li>
-</ul>
-<h2 id="编译nano">编译nano<a class="header-anchor" href="#编译nano">¶</a></h2>
-<p>在编译之前，需要创建一个curses.h的链接，否则会出错：</p>
-<pre><code class="language-bash">ln -s ncursesw/curses.h /home/f_qilin/forlinx/local/include/curses.h
-</code></pre>
-<p>其余流程同上(当前版本为5.8)：</p>
-<pre><code class="language-bash">cd ..
-wget https://www.nano-editor.org/dist/v5/nano-5.8.tar.gz
-tar -zxf nano-5.8.tar.gz
-cd nano-5.8/
-./configure --prefix=/home/f_qilin/forlinx/local --host=arm-none-linux-gnueabi CPPFLAGS=-I/home/f_qilin/forlinx/local/include LDFLAGS=-L/home/f_qilin/forlinx/local/lib
-make clean
-make
-make install
-</code></pre>
-<p>注：</p>
-<ul>
-<li>如果遇到编译错误，请查看错误信息，然后重新配置。</li>
-</ul>
-<p>至此，编译工作全部完成，接下来需要将输出文件转移到开发板中。</p>
-<h2 id="转移到开发板">转移到开发板<a class="header-anchor" href="#转移到开发板">¶</a></h2>
-<p>在转移之前，请将输出文件所在目录挂载到开发板中。具体过程不再赘述。</p>
-<p>假设/home/f_qilin/forlinx被挂载到/mnt/forlinx。</p>
-<p>以下过程在开发板终端操作：</p>
-<pre><code class="language-bash">cp -frp /mnt/forlinx/local/* /usr/
-</code></pre>
-<p>注：</p>
-<ul>
-<li>可能需要花费较长时间，请耐心等待。</li>
-<li>如果需要烧写等操作，请参考其他教程。复制文件的操作是完全一致的。</li>
-</ul>
-<p>完成后，输入nano命令即可运行。</p>
-<p><img src="nano-01.png" alt="" /></p>
-<h2 id="指定TERMINFO">指定TERMINFO<a class="header-anchor" href="#指定TERMINFO">¶</a></h2>
-<p>如果出现以下情况：</p>
-<p><img src="nano-02.png" alt="" /></p>
-<p>检查TERM以及TERMINFO：</p>
-<p><img src="nano-03.png" alt="" /></p>
-<p>进行测试：</p>
-<pre><code class="language-bash">TERMINFO=/usr/share/terminfo nano
-</code></pre>
-<p>正常运行。可见，缺少TERMINFO变量，需要进行配置。</p>
-<p>根据以上结果，只需要配置环境信息即可：</p>
-<pre><code class="language-bash">echo &quot;export TERMINFO=/usr/share/terminfo&quot; &gt;&gt; /etc/profile
-source /etc/profile
-</code></pre>
+<h2 id="关于需要输入密码的网址">关于需要输入密码的网址<a class="header-anchor" href="#关于需要输入密码的网址">¶</a></h2>
+<p>自建服务器+内网穿透，效果不错，就是需要访问认证。</p>
+<p>密码：<code>F_Qilin</code>。</p>
 
         
     
@@ -595,52 +513,11 @@ source /etc/profile
 
                 <!-- Post Comments -->
                 
-                    
-    <!-- 使用 Gitalk -->
-<div id="gitalk-comment">
-    <!-- Gitalk 评论框 -->
-<div id="gitalk-container"></div>
-
-<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-
-<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-<script>
-    var gitalk = new Gitalk({
-            clientID: 'e073439ae371c62845eb',
-            clientSecret: '2b72e02296b7ba88847ca61d9345fe85693d4db3',
-            repo: 'FZQ0003.github.io',
-            owner: 'FZQ0003',
-            admin: ['FZQ0003'],
-            // Ensure uniqueness and length less than 50
-            id: 'Comment: Cross-compile Nano',
-            // Facebook-like distraction free mode
-            distractionFreeMode: false
-        })
-   gitalk.render('gitalk-container')
-</script>
-</div>
-<style>
-    #gitalk-comment {
-        background-color: #eee;
-        padding: 2pc;
-    }
-</style>
-
-                
             </div>
 
             <!-- Post Prev & Next Nav -->
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
-    
-        <a href="/blog/2021-10-27/building-blender-on-aarch64/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
     
 
     <!-- Section Spacer -->
@@ -648,7 +525,7 @@ source /etc/profile
 
     <!-- Next Nav -->
     
-        <a href="/blog/2021-09-06/first-post/" id="post_nav-older" class="next-content">
+        <a href="/blog/2022-03-17/pandoc-markdown/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
