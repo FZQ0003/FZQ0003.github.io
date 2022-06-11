@@ -117,6 +117,17 @@
     
     
     <entry>
+      <title>友情链接</title>
+      <link href="/blog/links.html"/>
+      <url>/blog/links.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>tags</title>
       <link href="/blog/tags.html"/>
       <url>/blog/tags.html</url>
@@ -133,17 +144,6 @@
       <url>/blog/test.html</url>
       
         <content type="html"><![CDATA[<p>basic footnote<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup><br />here is an inline footnote[^2](inline footnote)<br />and another one<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup><br />and another one<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup><br />This is [an example][id] reference-style link.</p><hr class="footnotes-sep" /><section class="footnotes"><ol class="footnotes-list"><li id="fn1" class="footnote-item"><p>basic footnote content <a href="#fnref1" class="footnote-backref">↩︎</a></p></li><li id="fn2" class="footnote-item"><p>paragraph<br />footnote<br />content <a href="#fnref2" class="footnote-backref">↩︎</a></p></li><li id="fn3" class="footnote-item"><p>footnote content with some <a href="https://en.wikipedia.org/wiki/Markdown">markdown</a><br />[id]: <a href="http://example.com/">http://example.com/</a>  “Optional Title Here” <a href="#fnref3" class="footnote-backref">↩︎</a></p></li></ol></section>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>友情链接</title>
-      <link href="/blog/links.html"/>
-      <url>/blog/links.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
