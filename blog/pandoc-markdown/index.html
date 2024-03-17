@@ -1,0 +1,732 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/favicon.png">
+  <link rel="icon" href="/blog/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2F544B">
+  <meta name="author" content="F_Qilin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="嘿嘿嘿，Markdown，嘿嘿嘿……  问题引入 个人非常喜欢VSCode的GitHub Markdown Preview插件，尤其是其中的预览与生成HTML功能。 但是，如果看下生成后的文件……">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pandoc + Markdown 调教记录">
+<meta property="og:url" content="https://fqilin.top/blog/pandoc-markdown/">
+<meta property="og:site_name" content="F_Qilin的小窝">
+<meta property="og:description" content="嘿嘿嘿，Markdown，嘿嘿嘿……  问题引入 个人非常喜欢VSCode的GitHub Markdown Preview插件，尤其是其中的预览与生成HTML功能。 但是，如果看下生成后的文件……">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fqilin.top/blog/pandoc-markdown/fxxk-vsc-01.png">
+<meta property="og:image" content="https://fqilin.top/blog/pandoc-markdown/fxxk-vsc-02.png">
+<meta property="og:image" content="https://fqilin.top/blog/pandoc-markdown/fxxk-vsc-03.png">
+<meta property="og:image" content="https://fqilin.top/blog/pandoc-markdown/pandoc-01.png">
+<meta property="og:image" content="https://fqilin.top/blog/pandoc-markdown/pandoc-02.png">
+<meta property="og:image" content="https://fqilin.top/blog/pandoc-markdown/pandoc-03.png">
+<meta property="og:image" content="https://fqilin.top/blog/pandoc-markdown/pandoc-04.png">
+<meta property="og:image" content="https://fqilin.top/blog/pandoc-markdown/pandoc-05.png">
+<meta property="article:published_time" content="2022-03-17T10:56:31.000Z">
+<meta property="article:modified_time" content="2024-03-17T12:06:30.921Z">
+<meta property="article:author" content="F_Qilin">
+<meta property="article:tag" content="pandoc">
+<meta property="article:tag" content="markdown">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://fqilin.top/blog/pandoc-markdown/fxxk-vsc-01.png">
+  
+  
+  
+  <title>Pandoc + Markdown 调教记录 | F_Qilin的小窝</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/blog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/blog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/blog/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"fqilin.top","root":"/blog/","version":"1.9.7","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/blog/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/blog/js/utils.js" ></script>
+  <script  src="/blog/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/blog/">
+      <strong>F_Qilin的小窝</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/blog/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/blog/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Pandoc + Markdown 调教记录</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-03-17 18:56" pubdate>
+          2022年3月17日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Pandoc + Markdown 调教记录</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>嘿嘿嘿，Markdown，嘿嘿嘿……</p>
+</blockquote>
+<h2 id="问题引入">问题引入</h2>
+<p>个人非常喜欢VSCode的<a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=bierner.github-markdown-preview">GitHub Markdown Preview</a>插件，尤其是其中的预览与生成HTML功能。<br>
+但是，如果看下生成后的文件……</p>
+<span id="more"></span>
+<p>原文件：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># F<span class="hljs-emphasis">_Qilin</span></span><br><span class="hljs-emphasis"><span class="hljs-section"></span></span><br><span class="hljs-emphasis"><span class="hljs-section">## 233</span></span><br><span class="hljs-emphasis"><span class="hljs-section"></span></span><br><span class="hljs-emphasis"><span class="hljs-section">累了，毁灭罢。</span></span><br></code></pre></td></tr></table></figure>
+<p>生成的文件：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>F<span class="hljs-symbol">&amp;lowbar;</span>Qilin<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-comment">&lt;!-- 第6行 --&gt;</span><br><span class="hljs-comment">&lt;!-- 巴拉巴拉一大堆 --&gt;</span><br><span class="hljs-comment">&lt;!-- 第1218行 --&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;vscode-body vscode-light&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;f_qilin&quot;</span>&gt;</span>F_Qilin<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;233&quot;</span>&gt;</span>233<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>累了，毁灭罢。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>有点不太直观，放点截图哈：</p>
+<p><img src="fxxk-vsc-01.png" srcset="/blog/img/loading.gif" lazyload alt="开头" loading="lazy"></p>
+<p><img src="fxxk-vsc-02.png" srcset="/blog/img/loading.gif" lazyload alt="中间" loading="lazy"></p>
+<p><img src="fxxk-vsc-03.png" srcset="/blog/img/loading.gif" lazyload alt="结尾" loading="lazy"></p>
+<p>有点不忍直视啊。<br>
+合着这么大个文件，大部分都是直接套呗？</p>
+<p>因此，我萌生了一个想法：有没有什么方案能让我自行生成网页呢？</p>
+<h2 id="生成原理">生成原理</h2>
+<p>一般来讲也就两个部分：</p>
+<ul>
+<li>Markdown语法转HTML语法</li>
+<li>将生成的body填入到模板中</li>
+</ul>
+<p>关于语法转换，感觉很多工具都可以做到；<br>
+至于模板，准备一个就行了。</p>
+<p>因为以前安装过Pandoc，所以这次用Pandoc来<s>一波带走</s>自动化生成。</p>
+<h2 id="Pandoc使用">Pandoc使用</h2>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://pandoc.org/">Pandoc官方网站</a><br>
+关于css和模板，可参考<a target="_blank" rel="noopener" href="https://vimalkvn.com/pandoc-markdown-to-html/">这里</a>。</p>
+</blockquote>
+<p>首先，安装Pandoc。自己装。</p>
+<p>写个Markdown文件：</p>
+<p><code>document.md</code></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># 斯哈斯哈</span><br><br><span class="hljs-section">## 测试A</span><br><br>以下为参数要求：<br><br>|        发射机参数         |          指标           |<br>| :-----------------------: | :---------------------: |<br>|       载波频率$f<span class="hljs-emphasis">_0$       | $8.4\pm0.2\mathrm&#123;MHz&#125;$ |</span><br><span class="hljs-emphasis">|        频率稳定度         |      $\leq10^&#123;-3&#125;$      |</span><br><span class="hljs-emphasis">|       调幅指数$m_</span>a$       |     $30\%\sim80\%$      |<br>| 输出功率 (负载$50\Omega$) |   $\geq50\mathrm&#123;mW&#125;$   |<br><br>|        接收机参数        |         指标         |<br>| :----------------------: | :------------------: |<br>|          灵敏度          | $\leq30\mathrm&#123;dBM&#125;$ |<br>|          通频带          | $\leq1\mathrm&#123;MHz&#125;$  |<br>| 输出功率 (负载$8\Omega$) | $\geq0.25\mathrm&#123;W&#125;$ |<br><br><span class="hljs-quote">&gt; cue一下某课设</span><br><br><span class="hljs-section">## 测试B</span><br><br>&lt;!-- 嵌套围栏代码块不可用…… --&gt;<br><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span></span><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">code</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;python&quot;</span>&gt;</span></span>#!/usr/bin/python3<br><br>if <span class="hljs-strong">__name__</span> == &#x27;<span class="hljs-strong">__main__</span>&#x27;:<br><span class="hljs-code">    print(&#x27;Ohhhh&#x27;)&lt;/code&gt;&lt;/pre&gt;</span><br></code></pre></td></tr></table></figure>
+<p>然后直接开终端输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pandoc document.md -o document.html<br></code></pre></td></tr></table></figure>
+<p>生成不带样式的<code>document.html</code>文件，打开：</p>
+<p><img src="pandoc-01.png" srcset="/blog/img/loading.gif" lazyload alt="无样式输出" loading="lazy"></p>
+<p>还不错哈，但是感觉好像是几十年前的界面……</p>
+<p>使用<code>-s</code>参数，使用默认模板生成独立网页：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pandoc -s document.md -o document.html<br></code></pre></td></tr></table></figure>
+<p><img src="pandoc-02.png" srcset="/blog/img/loading.gif" lazyload alt="默认模板输出" loading="lazy"></p>
+<p>这回好多了，就这样放着也不错。<br>
+不过，如果我想实现GitHub主题之类的效果呢？</p>
+<p>比如，应用<a target="_blank" rel="noopener" href="https://github.com/sindresorhus/github-markdown-css">github-markdown-css</a>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pandoc -s document.md -c https://cdn.jsdelivr.net/npm/github-markdown-css@5.1.0/github-markdown-light.css -o document.html<br></code></pre></td></tr></table></figure>
+<p>效果……诶怎么没用了？<br>
+开一下<code>F12</code>，发现除了引用的css以外，还有Pandoc默认样式。<br>
+看来得改一下模板了。</p>
+<h2 id="模板修改">模板修改</h2>
+<p>首先输出模板：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pandoc -D html &gt; template.html<br></code></pre></td></tr></table></figure>
+<p>看见一堆乱七八糟的东西，但是只需要改改就能来个大变样。</p>
+<p>除了HTML以外，不难发现这些东西：</p>
+<p><code>template.html</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- ... --&gt;</span><br>$for(author-meta)$<br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;author&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;$author-meta$&quot;</span> /&gt;</span><br>$endfor$<br>$if(date-meta)$<br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;dcterms.date&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;$date-meta$&quot;</span> /&gt;</span><br>$endif$<br><span class="hljs-comment">&lt;!-- ... --&gt;</span><br></code></pre></td></tr></table></figure>
+<p>这个<code>for</code>啊<code>if</code>啊大家懂得都懂，照葫芦画瓢就行。<br>
+那这些东西是如何起作用的？</p>
+<p>在<code>document.md</code>头部加入以下内容：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs text">---<br>title: 我是标题<br>author: <br>    - 作者A<br>    - 作者B<br>    - 作者C<br>date: 2022-03-17<br>---<br></code></pre></td></tr></table></figure>
+<p>然后：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pandoc -s document.md -o document.html<br></code></pre></td></tr></table></figure>
+<p><img src="pandoc-03.png" srcset="/blog/img/loading.gif" lazyload alt="带封面的默认模板输出" loading="lazy"></p>
+<p>头部支持YAML格式。</p>
+<p>接下来就可以按照自己的想法来啦！<br>
+以下是我改的模板，支持以下内容：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/sindresorhus/github-markdown-css">github-markdown-css</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/highlightjs/highlight.js">Highlight.js</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/mathjax/MathJax">MathJax</a></li>
+<li>夜间模式</li>
+<li>是否显示头部（在头部定义<code>show-header: true</code>）</li>
+</ul>
+<p><code>template-md.html</code>（注：声明了中文<code>lang=&quot;zh-CN&quot;</code>）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;zh-CN&quot;</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span><br>$for(author-meta)$<br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;author&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;$author-meta$&quot;</span>&gt;</span><br>$endfor$<br>$if(date-meta)$<br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;dcterms.date&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;$date-meta$&quot;</span>&gt;</span><br>$endif$<br>$if(keywords)$<br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;keywords&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;$for(keywords)$$keywords$$sep$, $endfor$&quot;</span>&gt;</span><br>$endif$<br>$if(description-meta)$<br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;description&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;$description-meta$&quot;</span>&gt;</span><br>$endif$<br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;color-scheme&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;light dark&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://lib.baomitu.com/github-markdown-css/5.5.1/github-markdown.css&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css">    <span class="hljs-selector-tag">body</span> &#123;</span><br><span class="language-css">      <span class="hljs-attribute">box-sizing</span>: border-box;</span><br><span class="language-css">      <span class="hljs-attribute">min-width</span>: <span class="hljs-number">200px</span>;</span><br><span class="language-css">      <span class="hljs-attribute">max-width</span>: <span class="hljs-number">980px</span>;</span><br><span class="language-css">      <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto;</span><br><span class="language-css">      <span class="hljs-attribute">padding</span>: <span class="hljs-number">45px</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css">    <span class="hljs-keyword">@media</span> (<span class="hljs-attribute">max-width</span>: <span class="hljs-number">767px</span>) &#123;</span><br><span class="language-css">      <span class="hljs-selector-class">.markdown-body</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">padding</span>: <span class="hljs-number">15px</span>;</span><br><span class="language-css">      &#125;</span><br><span class="language-css">    &#125;</span><br><span class="language-css">    <span class="hljs-keyword">@media</span> (<span class="hljs-attribute">prefers-color-scheme</span>: dark) &#123;</span><br><span class="language-css">      <span class="hljs-selector-tag">body</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#0d1117</span>;</span><br><span class="language-css">      &#125;</span><br><span class="language-css">    &#125;</span><br><span class="language-css">  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br>$for(css)$<br>  <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;$css$&quot;</span>&gt;</span><br>$endfor$<br>$for(header-includes)$<br>  $header-includes$<br>$endfor$<br>  <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://lib.baomitu.com/highlight.js/11.7.0/styles/github.min.css&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">media</span>=<span class="hljs-string">&quot;(prefers-color-scheme: dark)&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://lib.baomitu.com/highlight.js/11.7.0/styles/github-dark.min.css&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://lib.baomitu.com/highlight.js/11.7.0/highlight.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    hljs.<span class="hljs-title function_">configure</span>(&#123;<span class="hljs-attr">languages</span>: [<span class="hljs-string">&#x27;plaintext&#x27;</span>]&#125;);</span><br><span class="language-javascript">    hljs.<span class="hljs-title function_">highlightAll</span>();</span><br><span class="language-javascript">  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>$if(math)$<br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;MathJax-script&quot;</span> <span class="hljs-attr">async</span></span><br><span class="hljs-tag">    <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>$endif$<br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">article</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;markdown-body&quot;</span>&gt;</span><br><br>$for(include-before)$<br>$include-before$<br>$endfor$<br>$if(show-header)$<br><span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">code</span>&gt;</span>$if(author)$Author: $for(author)$$author$$sep$, $endfor$$endif$<br>$if(date)$Date: $date$$endif$<br><span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span><br>$endif$<br>$body$<br>$for(include-after)$<br>$include-after$<br>$endfor$<br><br><span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>使用时，需开启MathJax并关闭默认代码高亮：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pandoc -s document.md --template template-md.html --no-highlight --mathjax -o document.html<br></code></pre></td></tr></table></figure>
+<p>如果不需要什么功能，把相关语句删了即可。</p>
+<p>最终效果（添加参数<code>-M show-header</code>）：</p>
+<p><img src="pandoc-04.png" srcset="/blog/img/loading.gif" lazyload alt="自定义模板浅色模式输出" loading="lazy"></p>
+<p><img src="pandoc-05.png" srcset="/blog/img/loading.gif" lazyload alt="自定义模板深色模式输出" loading="lazy"></p>
+<h2 id="自动化构建">自动化构建</h2>
+<p>总是输命令太麻烦了，直接上自动化：</p>
+<p><code>build.sh</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><br>TEMPLATE=<span class="hljs-string">&quot;template-md.html&quot;</span><br>SOURCE_DIR=<span class="hljs-string">&quot;source&quot;</span><br>BUILD_DIR=<span class="hljs-string">&quot;build&quot;</span><br><span class="hljs-comment"># EXTRA_ARGS=&quot;-M show-header&quot;</span><br><br><span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">traverse</span></span>() &#123;<br>    <span class="hljs-keyword">for</span> file <span class="hljs-keyword">in</span> $(<span class="hljs-built_in">ls</span> <span class="hljs-variable">$1</span>); <span class="hljs-keyword">do</span><br>        <span class="hljs-keyword">if</span> [ -d <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>/<span class="hljs-variable">$file</span>&quot;</span> ]; <span class="hljs-keyword">then</span><br>            traverse <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>/<span class="hljs-variable">$file</span>&quot;</span><br>        <span class="hljs-keyword">else</span><br>            build <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>/<span class="hljs-variable">$file</span>&quot;</span><br>        <span class="hljs-keyword">fi</span><br>    <span class="hljs-keyword">done</span><br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">build</span></span>() &#123;<br>    output_file=<span class="hljs-string">&quot;<span class="hljs-variable">$BUILD_DIR</span>/<span class="hljs-variable">$&#123;1##*$SOURCE_DIR/&#125;</span>&quot;</span><br>    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Generating <span class="hljs-variable">$output_file</span>...&quot;</span><br>    <span class="hljs-keyword">if</span> [ <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;1##*.&#125;</span>&quot;</span> == <span class="hljs-string">&quot;md&quot;</span> ]; <span class="hljs-keyword">then</span><br>        pandoc -s <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> --template <span class="hljs-string">&quot;<span class="hljs-variable">$TEMPLATE</span>&quot;</span> --no-highlight --mathjax <span class="hljs-variable">$EXTRA_ARGS</span> -o <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;output_file%.*&#125;</span>.html&quot;</span><br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-built_in">cp</span> <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> <span class="hljs-string">&quot;<span class="hljs-variable">$output_file</span>&quot;</span><br>    <span class="hljs-keyword">fi</span><br>&#125;<br><br><span class="hljs-built_in">rm</span> -r <span class="hljs-string">&quot;<span class="hljs-variable">$BUILD_DIR</span>&quot;</span><br><span class="hljs-built_in">mkdir</span> -p <span class="hljs-string">&quot;<span class="hljs-variable">$BUILD_DIR</span>&quot;</span><br>traverse <span class="hljs-string">&quot;<span class="hljs-variable">$SOURCE_DIR</span>&quot;</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Done!&quot;</span><br></code></pre></td></tr></table></figure>
+<p>累了，自己读吧。</p>
+<p>就像是hexo的生成网页一样，你也可以做到，快去试试吧！</p>
+<h2 id="总结">总结</h2>
+<p>也没啥好总结的，就是多了一种方法罢了。</p>
+<blockquote>
+<p><a href="document.html">示例中最后生成的<code>document.html</code></a></p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/blog/tags/pandoc/" class="print-no-link">#pandoc</a>
+      
+        <a href="/blog/tags/markdown/" class="print-no-link">#markdown</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Pandoc + Markdown 调教记录</div>
+      <div>https://fqilin.top/blog/pandoc-markdown/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>F_Qilin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年3月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/blog/pin-info/" title="一些说明">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">一些说明</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/blog/building-blender-on-aarch64/" title="在AArch64/ARM64架构平台编译Blender">
+                        <span class="hidden-mobile">在AArch64/ARM64架构平台编译Blender</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+<article id="comments" lazyload>
+  <div id="gitalk-container"></div>
+  <link rel="stylesheet" href="/blog/css/gitalk-user.css" />
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/blog/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"e073439ae371c62845eb","clientSecret":"2b72e02296b7ba88847ca61d9345fe85693d4db3","repo":"FZQ0003.github.io","owner":"FZQ0003","admin":["FZQ0003"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'Comment: Pandoc Markdown',
+            body: location.protocol + '//' + location.host + location.pathname
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+</article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <i class="iconfont icon-copyright"></i> <span id="copyright_year">2021 - </span> <span>F_Qilin</span> <br> <script>document.getElementById("copyright_year").innerText += new Date().getFullYear();</script> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br> <a target="_blank" href="http://furgov.cn" rel="nofollow noopener">兽ICP备202206210号</a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/blog/js/events.js" ></script>
+<script  src="/blog/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/blog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/blog/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/blog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

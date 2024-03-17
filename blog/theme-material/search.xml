@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>关于迁移至新主题的声明</title>
+      <link href="/blog/theme-material/migrate-theme-fluid/"/>
+      <url>/blog/theme-material/migrate-theme-fluid/</url>
+      
+        <content type="html"><![CDATA[<p>2021年，我使用<a href="https://hexo.io/">Hexo</a>搭建了自己的博客。<br>当时采用的是<a href="https://github.com/iblh/hexo-theme-material">Material</a>主题，很漂亮，就这样用了三年。<br>但时过境迁，主题作者已经不更新了，以及有一些小问题。<br>于是，我选择更换主题。</p><span id="more"></span><h2 id="旧主题存在的问题">旧主题存在的问题<a class="header-anchor" href="#旧主题存在的问题">¶</a></h2><p><a href="/blog/theme-material/migrate-theme-fluid/#%E6%97%A7%E4%B8%BB%E9%A2%98%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98">点击这里看旧主题</a></p><p><img src="/blog/migrate-theme-fluid/screenshot-old-01.png" alt="旧主题主页截图" loading="lazy"></p><p><img src="/blog/migrate-theme-fluid/screenshot-old-02.png" alt="旧主题文章截图" loading="lazy"></p><ul><li>部分EJS使用了<code>config.url + url_for(path)</code>的离谱语句，这会导致像<code>https://fqilin.top/blog/</code>的博客地址下<code>/path</code>被解析为<code>https://fqilin.top/blog/blog/path</code>。<blockquote><p>解决方法：将<code>config.url + url_for(path)</code>替换为<code>full_url_for(path)</code>。不过我觉得直接用<code>url_for(path)</code>更好。</p></blockquote></li><li>若想深度自定义，需要修改主题源码，在此分享几个例子：<ul><li><code>daily_pic</code>不daily。<blockquote><p>解决方法：添了点JS。</p></blockquote></li><li>Gitalk评论<code>id</code>参数固定为初始化时文章地址，如果文章地址变了就会无法找到评论。<blockquote><p>解决方法：在文章中定义<code>comment_id</code>参数，同时修改EJS。</p></blockquote></li></ul></li><li>离谱的玩意儿，比如在JS语句中插入HTML注释。</li><li>置顶文章所需插件<code>hexo-helper-post-top</code>的依赖为<code>&quot;hexo&quot;: &quot;^3.1.1&quot;</code>，这会导致无法修复的依赖漏洞问题。<blockquote><p>评价是无语。</p></blockquote></li><li>没有深色模式。</li></ul><p>这里给个我修改后的<a href="/blog/migrate-theme-fluid/hexo-theme-material.diff">diff</a>。</p><h2 id="新主题使用体验">新主题使用体验<a class="header-anchor" href="#新主题使用体验">¶</a></h2><p><a href="/blog/migrate-theme-fluid/#%E6%96%B0%E4%B8%BB%E9%A2%98%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C">点击这里回到新主题</a></p><p>现在换成了<a href="https://github.com/fluid-dev/hexo-theme-fluid">Fluid</a>主题，这款主题也采用Material Design风格，而且有夜间模式，且可以通过注入的方式修改源码，方便后期部署。</p><p><img src="/blog/migrate-theme-fluid/screenshot-new-01.png" alt="新主题主页截图" loading="lazy"></p><p><img src="/blog/migrate-theme-fluid/screenshot-new-02.png" alt="新主题主页文章部分截图" loading="lazy"></p><p><img src="/blog/migrate-theme-fluid/screenshot-new-03.png" alt="新主题文章截图" loading="lazy"></p><p>好爽，但是相比于旧主题还是有一些小问题：</p><ul><li>Gitalk问题同上，但这次通过注入的方法更优雅地修改，同时实现了一套主题适配CSS。<blockquote><p>新的问题是，评论区的代码块似乎只支持浅色模式的高亮……<br>我犯难了。</p></blockquote></li><li>可能得自己实现图库界面了，正在做缝合怪……</li><li>深浅色切换过程有些元素没有动画，不过也无妨。</li></ul><h2 id="总结">总结<a class="header-anchor" href="#总结">¶</a></h2><p>非常好主题，使我的心情舒畅。<br>而且这个主题还在维护，想必很长一段时间内都不用考虑主题方面的问题了。<br>现在就着手准备剩余界面的移植了！（指图库</p><blockquote><p>好哇，很好哇！狠狠地注入！（不是</p></blockquote>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+            <tag> migrate </tag>
+            
+            <tag> fluid </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+    
+    
+    <entry>
+      <title>图库</title>
+      <link href="/blog/theme-material/gallery/index.html"/>
+      <url>/blog/theme-material/gallery/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>tags</title>
+      <link href="/blog/theme-material/tags.html"/>
+      <url>/blog/theme-material/tags.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+  
+</search>

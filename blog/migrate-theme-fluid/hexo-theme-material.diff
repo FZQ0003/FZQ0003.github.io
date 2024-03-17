@@ -1,0 +1,183 @@
+diff --git a/layout/_partial/daily_pic.ejs b/layout/_partial/daily_pic.ejs
+index 51f257d..61cdc0c 100644
+--- a/layout/_partial/daily_pic.ejs
++++ b/layout/_partial/daily_pic.ejs
+@@ -1,8 +1,20 @@
+ <!-- Daily pic -->
+ <div class="mdl-card <% if(theme.card_elevation) { %><%= 'mdl-shadow--' + theme.card_elevation + 'dp' %><% } %> daily-pic mdl-cell mdl-cell--8-col index-top-block">
+ 
++    <!-- Background Style -->
++    <% if(theme.daily_pic.random_amount) { %>
++        <script>
++            // TODO: Timezone
++            var todayDate = new Date();
++            var picNum = Math.floor(todayDate.getTime() / 86400000) % <%= theme.daily_pic.random_amount %> + 1;
++            document.write("<style>.daily-pic-dir{background-image:url(<%= url_for(theme.img.daily_pic) %>" + picNum + ".<%= theme.daily_pic.format %>);}</style>");
++        </script>
++    <% } else { %>
++        <style>.daily-pic-dir{background-image:url("<%= url_for(theme.img.daily_pic) %>");}</style>
++    <% } %>
++
+     <!-- Pic & Slogan -->
+-    <div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url(<%= url_for(theme.img.daily_pic) %>)">
++    <div class="mdl-card__media mdl-color-text--grey-50 daily-pic-dir">
+         <p class="index-top-block-slogan"><a href="<%= theme.url.daily_pic %>">
+         <% if(theme.uiux.slogan) { %>
+             <% if(Array.isArray(theme.uiux.slogan)) { %>
+diff --git a/layout/_partial/head.ejs b/layout/_partial/head.ejs
+index b895543..f7d49ef 100644
+--- a/layout/_partial/head.ejs
++++ b/layout/_partial/head.ejs
+@@ -132,7 +132,7 @@
+     <!-- WebAPP Icons -->
+     <meta name="mobile-web-app-capable" content="yes">
+     <meta name="application-name" content="<%= config.title %>">
+-    <meta name="msapplication-starturl" content="<%= config.url + url_for(page.path).replace('index.html', '') %>">
++    <meta name="msapplication-starturl" content="<%= full_url_for(page.path).replace('index.html', '') %>">
+     <meta name="msapplication-navbutton-color" content="<%= theme.uiux.android_chrome_color %>">
+     <meta name="apple-mobile-web-app-capable" content="yes">
+     <meta name="apple-mobile-web-app-title" content="<%= config.title %>">
+@@ -154,7 +154,7 @@
+     <% } %>
+ 
+     <!-- The Open Graph protocol -->
+-    <meta property="og:url" content="<%= config.url + url_for(page.path).replace('index.html', '') %>">
++    <meta property="og:url" content="<%= full_url_for(page.path).replace('index.html', '') %>">
+     <meta property="og:type" content="blog">
+     <meta property="og:title" content="<% if (title) { %><%= title %> | <% } %><%= config.title %>">
+     <meta property="og:image" content="<%= url_for(theme.head.high_res_favicon) %>">
+@@ -173,7 +173,7 @@
+     <% if( (page.current === 1) && (is_home()) ) { %>
+         <link rel="canonical" href="<%- config.url %>" />
+     <% } else { %>
+-        <link rel="canonical" href="<%- config.url + url_for(path) %>" />
++        <link rel="canonical" href="<%- full_url_for(path) %>" />
+     <% } %>
+ 
+     <!-- Structured-data for SEO -->
+diff --git a/layout/_partial/post-info-share.ejs b/layout/_partial/post-info-share.ejs
+index 2f51e71..3cd1732 100644
+--- a/layout/_partial/post-info-share.ejs
++++ b/layout/_partial/post-info-share.ejs
+@@ -27,7 +27,7 @@
+ 
+     <!-- Share Weibo -->
+     <% if(theme.sns_share.weibo === true) { %>
+-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=<%= page.title %>&url=<%= config.url + url_for(path) %>&pic=<%- config.url + theme.head.favicon %>&searchPic=false&style=simple" target="_blank">
++        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=<%= page.title %>&url=<%= full_url_for(path) %>&pic=<%- config.url + theme.head.favicon %>&searchPic=false&style=simple" target="_blank">
+             <li class="mdl-menu__item">
+                 <%= __('share.toWeibo') %>
+             </li>
+@@ -36,7 +36,7 @@
+ 
+     <!-- Share Twitter -->
+     <% if(theme.sns_share.twitter === true) { %>
+-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=<%= page.title %>&url=<%= config.url + url_for(path) %>&via=<%= config.author %>" target="_blank">
++        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=<%= page.title %>&url=<%= full_url_for(path) %>&via=<%= config.author %>" target="_blank">
+             <li class="mdl-menu__item">
+                 <%= __('share.toTwitter') %>
+             </li>
+@@ -45,7 +45,7 @@
+ 
+     <!-- Share Facebook -->
+     <% if(theme.sns_share.facebook === true) { %>
+-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=<%= config.url + url_for(path) %>" target="_blank">
++        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=<%= full_url_for(path) %>" target="_blank">
+             <li class="mdl-menu__item">
+                 <%= __('share.toFacebook') %>
+             </li>
+@@ -54,7 +54,7 @@
+ 
+     <!-- Share Google+ -->
+     <% if(theme.sns_share.googleplus === true) { %>
+-        <a class="post_share-link" href="https://plus.google.com/share?url=<%= config.url + url_for(path) %>" target="_blank">
++        <a class="post_share-link" href="https://plus.google.com/share?url=<%= full_url_for(path) %>" target="_blank">
+             <li class="mdl-menu__item">
+                 <%= __('share.toGplus') %>
+             </li>
+@@ -63,7 +63,7 @@
+ 
+     <!-- Share LinkedIn -->
+     <% if(theme.sns_share.linkedin === true) { %>
+-        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=<%- config.url + url_for(path) %>&title=<%= page.title %>" target="_blank">
++        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=<%- full_url_for(path) %>&title=<%= page.title %>" target="_blank">
+             <li class="mdl-menu__item">
+                 <%= __('share.toLinkedIn') %>
+             </li>
+@@ -81,7 +81,7 @@
+ 
+     <!-- Share Telegram -->
+     <% if(theme.sns_share.telegram === true) { %>
+-        <a class="post_share-link" href="https://telegram.me/share/url?url=<%- config.url + url_for(path) %>&text=<%= page.title %>" target="_blank">
++        <a class="post_share-link" href="https://telegram.me/share/url?url=<%- full_url_for(path) %>&text=<%= page.title %>" target="_blank">
+             <li class="mdl-menu__item">
+                 <%= __('share.toTelegram') %>
+             </li>
+diff --git a/layout/_partial/structured-data.ejs b/layout/_partial/structured-data.ejs
+index 4bcc4ff..718ae9c 100644
+--- a/layout/_partial/structured-data.ejs
++++ b/layout/_partial/structured-data.ejs
+@@ -27,7 +27,7 @@
+ {
+     "@context": "https://schema.org",
+     "@type": "BlogPosting",
+-    "mainEntityOfPage": "<%- config.url + url_for(path) %>",
++    "mainEntityOfPage": "<%- full_url_for(path) %>",
+     "headline": "<%- page.title %>",
+     "datePublished": "<%= page.date %>",
+     "dateModified": "<%= page.updated %>",
+diff --git a/layout/_widget/comment/gitalk/main.ejs b/layout/_widget/comment/gitalk/main.ejs
+index ff34668..2408556 100644
+--- a/layout/_widget/comment/gitalk/main.ejs
++++ b/layout/_widget/comment/gitalk/main.ejs
+@@ -12,7 +12,9 @@
+             repo: '<%= theme.comment.gitalk_repo %>',
+             owner: '<%= theme.comment.gitalk_owner %>',
+             admin: ['<%= theme.comment.gitalk_owner %>'],
+-            // facebook-like distraction free mode
++            // Ensure uniqueness and length less than 50
++            id: 'Comment: <%= page.comment_id %>',
++            // Facebook-like distraction free mode
+             distractionFreeMode: false
+         })
+    gitalk.render('gitalk-container')
+diff --git a/layout/_widget/comment/gitment/enter.ejs b/layout/_widget/comment/gitment/enter.ejs
+index 9b19801..0129ade 100644
+--- a/layout/_widget/comment/gitment/enter.ejs
++++ b/layout/_widget/comment/gitment/enter.ejs
+@@ -12,7 +12,8 @@
+ <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+ <script>
+     var gitment = new Gitment({
+-        id: '<%= page.permalink %>', // 可选。默认为 location.href
++        // Ensure uniqueness and length less than 50
++        id: 'Comment: <%= page.comment_id %>',
+         owner: '<%= theme.comment.gitment_owner %>',
+         repo: '<%= theme.comment.gitment_repo %>',
+         oauth: {
+diff --git a/layout/_widget/page-gallery.ejs b/layout/_widget/page-gallery.ejs
+index 19695de..10b486d 100644
+--- a/layout/_widget/page-gallery.ejs
++++ b/layout/_widget/page-gallery.ejs
+@@ -99,7 +99,7 @@
+               event: 'scrollstop'
+             });
+         })
+-        <!-- Start Queue -->
++        // Start Queue
+         $(document).ready(function(){
+             setInterval(function(){
+                 queue.execNext();
+diff --git a/layout/post.ejs b/layout/post.ejs
+index 0b25e94..b5e9747 100644
+--- a/layout/post.ejs
++++ b/layout/post.ejs
+@@ -40,7 +40,7 @@
+                 <% } %>
+ 
+                 <!-- Post Comments -->
+-                <% if(page.comment !== false) { %>
++                <% if(page.comment !== false && page.comment_id) { %>
+                     <%- partial('_partial/comment') %>
+                 <% } %>
+             </div>
